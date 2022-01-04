@@ -19,3 +19,4 @@ def google(title):
 title=input("Enter the project title: ")
 google(title)
 #This type of content opening is wrong as even the website code is being opened
+#Also we can make the function fancy using decorators which we can do later
