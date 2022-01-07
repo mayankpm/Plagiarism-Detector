@@ -1,0 +1,18 @@
+from tkinter import *
+root = Tk()
+root.title("python project!")
+root.iconbitmap("C:/text file for project")
+root.geometry("500x450")
+
+def open_txt():
+    text_file=open("sample.txt", 'r')
+    text_file.read()
+    text_file.close()
+
+
+my_text = Text(root,width=40,height=10,font=("helvetica",16))
+my_text.pack(pady=20)
+open_button= Button(root,text="open text file",command=open_txt)
+open_button.pack(pady=20)
+
+root.mainloop()
