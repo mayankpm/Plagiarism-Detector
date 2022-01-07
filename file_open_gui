@@ -1,10 +1,11 @@
 from tkinter import *
+from tkinter import filedialog
 root = Tk()
 root.title("python project!")
-root.iconbitmap("C:/text file for project")
 root.geometry("500x450")
 
 def open_txt():
+    text_file=filedialog.askopenfilename(initialdir="c:/",title="open text file",filetypes=(("text Files", "*.txt"), ))
     text_file=open("sample.txt", 'r')
     text_file.read()
     text_file.close()
