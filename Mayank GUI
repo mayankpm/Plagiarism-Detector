@@ -1,0 +1,319 @@
+#page 1
+
+from tkinter import *
+root=Tk()
+root.title("Plagiarism Detector")
+root.geometry('1300x600')
+canvas=Canvas(root,width=1300,height=600)
+canvas.grid(row=0,column=0)
+searchbro=Label(root,text='Project title name:',font=('Georgia',25))
+searchbro.place(x=250,y=300)
+search_type=Text(root,height=1,width=20,font=('Georgia',25))
+
+search_type.place(x=530,y=300)
+search_button=Button(root,text='Search',font=('Ariel',15),height=1)
+search_button.place(x=950,y=300)
+root.mainloop()
+
+
+
+
+#page2
+
+import tkinter
+from pygame.locals import *
+from tkinter import *
+from tkinter.filedialog import askopenfile
+from tkinter.ttk import *
+from tkinter import filedialog as fd
+from tkinter.filedialog import asksaveasfile
+root=Tk()
+root.title("Plagiarism Detector")
+root.iconbitmap(r'D:\Users\Sunitha Manohar\Desktop\playboi.ico')
+root.geometry('1300x600')
+canvas=Canvas(root,width=1300,height=600)
+canvas.grid(row=0,column=0)
+
+text12 = Text(root, height=20,width=50)
+text12.place(x=100,y=120)
+
+def open_text_file():
+    # file type
+    filetypes = (
+        ('text files', '*.txt'),
+        ('All files', '*.*')
+    )
+    # show the open file dialog
+    f = fd.askopenfile(filetypes=filetypes)
+    # read the text file and show its content on the Text
+    text12.insert('1.0', f.read())
+
+open_file1=Label(root,text='Open file:')
+open_file1.place(x=98,y=100)
+
+def motion(event):
+    x, y = event.x, event.y
+    print('{}, {}'.format(x, y))
+
+root.bind('<Motion>', motion)
+
+project_title1=Label(root,text="List of links:")
+project_title1.place(x=628,y=100)
+search_file2=Text(root,width=50,height=20)
+search_file2.place(x=630,y=120)
+
+open_button=Button(root,text='Open',command=open_text_file)
+open_button.place(x=200,y=503)
+
+submit_button=Button(root,text='Submit')
+submit_button.place(x=100,y=503)
+quit_button=Button(root,text='Quit',command=root.destroy)
+quit_button.place(x=628,y=503)
+
+root.mainloop()
+
+
+
+
+
+
+#page3
+
+
+from tkinter import *
+from tkinter import filedialog
+from PIL import ImageTk,Image
+
+root=Tk()
+
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+
+menu=Menu(root)
+root.config(menu=menu)
+filemenu=Menu(menu)
+menu.add_cascade(label='File',menu=filemenu)
+filemenu.add_command(label='New')
+
+def open_file():
+    file = askopenfile(mode ='r', filetypes =[('Python Files', '*.py')])
+    if file is not None:
+        content = file.read()
+        print(content)
+
+filemenu.add_command(label='Open',command=lambda:open_file())
+
+
+def save1():
+    files = [('All Files', '*.*'), 
+             ('Python Files', '*.py'),
+             ('Text Document', '*.txt')]
+    file1 = asksaveasfile(filetypes = files, defaultextension = files)
+
+
+filemenu.add_command(label='Save',command=lambda:save1())
+
+
+
+filemenu.add_separator()
+filemenu.add_command(label='Exit',command=root.destroy)
+helpmenu=Menu(menu)
+menu.add_cascade(label='Help',menu=helpmenu)
+helpmenu.add_command(label='About')
+root.title('Plagiarism Detector')
+root.geometry('1300x600')
+l1=Label(root,text='Plagiarism Detector',font=('Times New Roman',25))
+l1.place(x=30,y=10)
+l2_inputfile=Label(root,text='Input file:',font=('Ariel',15))
+l2_inputfile.place(x=30,y=60)
+l3_outputfile=Label(root,text='Output file:',font=('Ariel',15))
+l3_outputfile.place(x=700,y=60)
+scrollbar=Scrollbar(root)
+scrollbar.pack(side=RIGHT,fill=Y)
+a=Text(root,width=60,height=30)
+a.place(x=30,y=100)
+b=Text(root,)
+a.config(yscrollcommand=scrollbar.set)
+scrollbar.config(command=a.yview)
+b=Text(root,width=60,height=30)
+b.place(x=700,y=100)
+b.config(yscrollcommand=scrollbar.set)
+scrollbar.config(command=b.yview)
+root.mainloop()
+
+
+
+
+#classes only
+
+import Tkinter as tk
+
+class Page(tk.Frame):
+    def __init__(self, *args, **kwargs):
+        tk.Frame.__init__(self, *args, **kwargs)
+    def show(self):
+        self.lift()
+
+class Page1(Page):
+   def __init__(self, *args, **kwargs):
+       Page.__init__(self, *args, **kwargs)
+       label = tk.Label(self, text="This is page 1")
+       label.pack(side="top", fill="both", expand=True)
+
+class Page2(Page):
+   def __init__(self, *args, **kwargs):
+       Page.__init__(self, *args, **kwargs)
+       label = tk.Label(self, text="This is page 2")
+       label.pack(side="top", fill="both", expand=True)
+
+class Page3(Page):
+   def __init__(self, *args, **kwargs):
+       Page.__init__(self, *args, **kwargs)
+       label = tk.Label(self, text="This is page 3")
+       label.pack(side="top", fill="both", expand=True)
+
+class MainView(tk.Frame):
+    def __init__(self, *args, **kwargs):
+        tk.Frame.__init__(self, *args, **kwargs)
+        p1 = Page1(self)
+        p2 = Page2(self)
+        p3 = Page3(self)
+
+        buttonframe = tk.Frame(self)
+        container = tk.Frame(self)
+        buttonframe.pack(side="top", fill="x", expand=False)
+        container.pack(side="top", fill="both", expand=True)
+
+        p1.place(in_=container, x=0, y=0, relwidth=1, relheight=1)
+        p2.place(in_=container, x=0, y=0, relwidth=1, relheight=1)
+        p3.place(in_=container, x=0, y=0, relwidth=1, relheight=1)
+
+        b1 = tk.Button(buttonframe, text="Page 1", command=p1.show)
+        b2 = tk.Button(buttonframe, text="Page 2", command=p2.show)
+        b3 = tk.Button(buttonframe, text="Page 3", command=p3.show)
+
+        b1.pack(side="left")
+        b2.pack(side="left")
+        b3.pack(side="left")
+
+        p1.show()
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    main = MainView(root)
+    main.pack(side="top", fill="both", expand=True)
+    root.wm_geometry("400x400")
+    root.mainloop()
+    
+    
+
+
+
+#classes with the whole program
+
+
+
+
+import tkinter as tk
+from tkinter import *
+from tkinter.filedialog import askopenfile
+from tkinter.ttk import *
+from tkinter import filedialog as fd
+from tkinter.filedialog import asksaveasfile
+
+class Page(tk.Frame):
+    def __init__(self, *args, **kwargs):
+        tk.Frame.__init__(self, *args, **kwargs)
+    def show(self):
+        self.lift()
+
+class Page1(Page):
+    def __init__(self, *args, **kwargs):
+        Page.__init__(self, *args, **kwargs)
+        searchbro=Label(root,text='Project title name:',font=('Georgia',25))
+        searchbro.place(x=250,y=300)
+        search_type=Text(root,height=1,width=20,font=('Georgia',25))
+
+        search_type.place(x=530,y=300)
+        search_button=Button(root,text='Search')
+        search_button.place(x=950,y=300)
+
+class Page2(Page):
+    def __init__(self, *args, **kwargs):
+        Page.__init__(self, *args, **kwargs)
+        text12 = Text(root, height=20,width=50)
+        text12.place(x=100,y=120)
+
+
+        def open_text_file():
+            # file type
+            filetypes = (('text files', '*.txt'),('All files', '*.*'))
+            # show the open file dialog
+            f = fd.askopenfile(filetypes=filetypes)
+            # read the text file and show its content on the Text
+            text12.insert('1.0', f.read())
+
+        open_file1=Label(root,text='Open file:')
+        open_file1.place(x=98,y=100)
+
+        def motion(event):
+            x, y = event.x, event.y
+            print('{}, {}'.format(x, y))
+
+        root.bind('<Motion>', motion)
+
+
+        project_title1=Label(root,text="List of links:")
+        project_title1.place(x=628,y=100)
+        search_file2=Text(root,width=50,height=20)
+        search_file2.place(x=630,y=120)
+
+        open_button=Button(root,text='Open',command=open_text_file)
+        open_button.place(x=200,y=503)
+
+
+        submit_button=Button(root,text='Submit')
+        submit_button.place(x=100,y=503)
+        quit_button=Button(root,text='Quit',command=root.destroy)
+        quit_button.place(x=628,y=503)
+
+       
+
+class Page3(Page):
+   def __init__(self, *args, **kwargs):
+       Page.__init__(self, *args, **kwargs)
+       label = tk.Label(self, text="This is page 3")
+       label.pack(side="top", fill="both", expand=True)
+
+class MainView(tk.Frame):
+    def __init__(self, *args, **kwargs):
+        tk.Frame.__init__(self, *args, **kwargs)
+        p1 = Page1(self)
+        p2 = Page2(self)
+        p3 = Page3(self)
+
+        buttonframe = tk.Frame(self)
+        container = tk.Frame(self)
+        buttonframe.pack(side="top", fill="x", expand=False)
+        container.pack(side="top", fill="both", expand=True)
+
+        p1.place(in_=container, x=0, y=0, relwidth=1, relheight=1)
+        p2.place(in_=container, x=0, y=0, relwidth=1, relheight=1)
+        p3.place(in_=container, x=0, y=0, relwidth=1, relheight=1)
+
+        b1 = tk.Button(buttonframe, text="Page 1", command=p1.show)
+        b2 = tk.Button(buttonframe, text="Page 2", command=p2.show)
+        b3 = tk.Button(buttonframe, text="Page 3", command=p3.show)
+
+        b1.pack(side="left")
+        b2.pack(side="left")
+        b3.pack(side="left")
+
+        p1.show()
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    main = MainView(root)
+    main.pack(side="top", fill="both", expand=True)
+    root.wm_geometry("1300x600")
+    root.mainloop()
