@@ -1,5 +1,5 @@
 # Plagiarism-Detector
-Please extract before using. Once changes are made, update it back to GitHub 
+Please extract before using.
 
 
 College project cum startup
